@@ -18,8 +18,8 @@ scratchpad (outside the repository). No project dependency was added or changed.
 | 4 | Read-only risk review | done | 275462b |
 | 5 | Risk register | done | ec6ac21 |
 | 6 | Agent readiness (before) | done | f862efc |
-| 7 | Two mitigations | done | 079a1fa (R1), 8280c88 (R2), + doc commit |
-| 8 | Background-agent safeguards | pending | |
+| 7 | Two mitigations | done | 079a1fa (R1), 8280c88 (R2), fb12485 |
+| 8 | Background-agent safeguards | done | (commit "Phase 8: ...", see git log) |
 | 9 | Readiness after + release decision | pending | |
 | 10 | Reflection placeholder | pending | |
 | Final | README, SUBMISSION, push | pending | |
