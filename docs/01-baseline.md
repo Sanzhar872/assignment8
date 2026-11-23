@@ -27,7 +27,7 @@ setup command `pip install -r requirements.txt` was run in an isolated virtualen
 $ python -m pytest
 ============================= test session starts =============================
 platform win32 -- Python 3.13.15, pytest-9.2.0, pluggy-1.7.0
-rootdir: C:\Users\SANJAR\Desktop\uni\se\as8\task-tracker
+rootdir: <local path to task-tracker, redacted>
 collected 4 items
 
 tests\test_tracker.py ....                                               [100%]

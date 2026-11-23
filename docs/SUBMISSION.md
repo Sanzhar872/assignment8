@@ -66,8 +66,8 @@ $ git grep -n -i -E "password|secret_|api_key|apikey|BEGIN (RSA|OPENSSH)|ghp_|sk
 ```
 The second command matched only documentation text (every hit was the substring `sk-` inside `risk-` or `task-`, or the words
 `password`/`secret` inside descriptions of the checks themselves) - no credentials. `tasks.json` is git-ignored and was never
-committed (`git log --all --oneline -- tasks.json` is empty). Note: pasted pytest outputs contain the local path
-`C:\Users\SANJAR\Desktop\uni\se\as8\task-tracker`; remove it if that matters to you.
+committed (`git log --all --oneline -- tasks.json` is empty). The local machine path in the pasted pytest output (`rootdir:` line in
+docs/01-baseline.md) was redacted to `<local path to task-tracker, redacted>`; nothing else in that output was changed.
 
 ## Student review
 - Reviewer: Sanzhar872 (student), 2026-11-23.
