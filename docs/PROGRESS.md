@@ -21,5 +21,5 @@ scratchpad (outside the repository). No project dependency was added or changed.
 | 7 | Two mitigations | done | 079a1fa (R1), 8280c88 (R2), fb12485 |
 | 8 | Background-agent safeguards | done | 0b27bb6 |
 | 9 | Readiness after + release decision | done | 5405632 |
-| 10 | Reflection placeholder | done | (commit "Phase 10: ...", see git log) |
-| Final | README, SUBMISSION, push | pending | |
+| 10 | Reflection placeholder | done | 384d000 |
+| Final | README, SUBMISSION, push | done (push result in ai-evidence.md) | 4a4c6e1 + submission commit |
