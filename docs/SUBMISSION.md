@@ -91,4 +91,4 @@ tests/test_tracker.py::test_user_data_and_local_files_are_git_ignored[.venv/pyve
 
 ## Still open
 - Release conditions G2-G4 in docs/09-release-decision.md (lint/type checks, pinned dependencies, R3 fix).
-- Confirm the "(medium)" effort setting mentioned in the reflection.
+- (The "(medium)" effort setting in the reflection was confirmed by the student on 2026-11-23.)
