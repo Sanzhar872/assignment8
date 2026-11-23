@@ -33,5 +33,19 @@ Arithmetic check: R1 2x3=6, R2 2x3=6, R3 3x1=3, R4 2x2=4, R5 1x2=2, R6 2x1=2, R7
 Why not the others: R4 and R9 (score 4) would need new dependencies or remote settings (requires human approval; R9 is not
 even confirmed). R3 (score 3) only produces a traceback - no data is changed because the crash happens before `save_tasks`.
 
-## After mitigations
-See the "After mitigations" section appended in Phase 7 below.
+## After mitigations (Phase 7, commits `079a1fa` and `8280c88`)
+
+| ID | Before (L x I = S) | After (L x I = S) | Status | Evidence | Residual risk |
+|---|---|---|---|---|---|
+| R1 | 2 x 3 = 6 | 1 x 2 = **2** | Mitigated | `test_corrupted_tasks_file_is_not_overwritten` failed before, passes after; CLI probe leaves the corrupted file byte-identical (docs/07) | Raw traceback instead of a friendly message; non-atomic write (C7) still open |
+| R2 | 2 x 3 = 6 | 1 x 3 = **3** | Mitigated | `test_user_data_and_local_files_are_git_ignored` (4 cases) failed before, pass after; `git add -A --dry-run` no longer lists `tasks.json` | `git add -f` bypass; no hook/CI enforcement |
+| R3 | 3 x 1 = 3 | 3 x 1 = 3 | Open | - | unchanged |
+| R4 | 2 x 2 = 4 | 2 x 2 = 4 | Open (needs approval for new dev dependencies) | - | unchanged |
+| R5 | 1 x 2 = 2 | 1 x 2 = 2 | Open | - | unchanged |
+| R6 | 2 x 1 = 2 | 2 x 1 = 2 | Open | - | unchanged |
+| R7 | 2 x 1 = 2 | 2 x 1 = 2 | Open (pinning needs approval) | - | unchanged |
+| R8 | 2 x 1 = 2 | 2 x 1 = 2 | Open | - | unchanged |
+| R9 | 2 x 2 = 4 | 2 x 2 = 4 | Open, PLAUSIBLE-UNVERIFIED | - | unchanged |
+
+Arithmetic check (after): R1 1x2=2, R2 1x3=3, R3 3x1=3, R4 2x2=4, R5 1x2=2, R6 2x1=2, R7 2x1=2, R8 2x1=2, R9 2x2=4.
+Highest remaining scores: R4 (4, CONFIRMED) and R9 (4, unverified).
