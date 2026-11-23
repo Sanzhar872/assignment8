@@ -1,5 +1,9 @@
 import os
+import shutil
+import subprocess
 import sys
+
+import pytest
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 
@@ -93,3 +97,17 @@ def test_missing_tasks_file_still_means_empty_list(tmp_path, monkeypatch):
     """R1 guard: first run without tasks.json keeps working."""
     monkeypatch.setattr(tracker, "DATA_FILE", str(tmp_path / "tasks.json"))
     assert tracker.load_tasks() == []
+
+
+REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+
+@pytest.mark.parametrize(
+    "path", ["tasks.json", ".env", "__pycache__/tracker.cpython-313.pyc", ".venv/pyvenv.cfg"]
+)
+def test_user_data_and_local_files_are_git_ignored(path):
+    """R2: user data, secrets and local artefacts must not be stageable by `git add -A`."""
+    if shutil.which("git") is None or not os.path.isdir(os.path.join(REPO_ROOT, ".git")):
+        pytest.skip("not a git checkout")
+    result = subprocess.run(["git", "check-ignore", "-q", path], cwd=REPO_ROOT)
+    assert result.returncode == 0, f"{path} is not ignored by .gitignore"

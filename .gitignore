@@ -1,0 +1,13 @@
+# User data - never commit (see AGENTS.md)
+tasks.json
+
+# Secrets
+.env
+.env.*
+
+# Python / tooling artefacts
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
