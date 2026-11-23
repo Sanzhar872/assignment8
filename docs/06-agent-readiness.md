@@ -1,0 +1,69 @@
+# Task 6 - Agent readiness audit
+
+Agent: Claude Code, model Claude Opus 5.5, 2026-11-23. Human review: PENDING - student review before submission.
+
+Levels used:
+- **1 Baseline** - code runs and has some tests, but nothing tells an agent how to work safely; setup/hygiene gaps.
+- **2 Documented** - accurate README + agent instructions (AGENTS.md) with setup, safe commands, prohibited actions and
+  review gates; tests run green from the documented commands.
+- **3 Agent-ready** - level 2 **plus** reproducible pinned setup, automated quality gates (lint/type/tests in CI), repo
+  safeguards that actually enforce the rules (.gitignore, hooks/permissions/branch protection), and no open high-score
+  CONFIRMED risks.
+
+## Part A - State BEFORE mitigations (commit `ec6ac21`)
+
+### README commands, actually run
+Fresh virtualenv (outside the repo), PATH pointing at it, repo root:
+```
+$ pip install -r requirements.txt
+Successfully installed colorama-0.4.6 iniconfig-2.3.1 packaging-26.3 pluggy-1.7.0 pygments-2.21.0 pytest-9.2.0
+$ pytest
+tests\test_tracker.py .....                                              [100%]
+============================== 5 passed in 0.05s ==============================
+exit=0
+```
+Usage commands, in a `mktemp -d` copy (so no `tasks.json` lands in the repo):
+```
+$ python tracker.py add "Buy milk" 2
+Added task 1: Buy milk
+$ python tracker.py list priority
+[ ] 1. Buy milk (priority 2)
+$ python tracker.py done 1
+Task 1 completed
+$ python tracker.py list
+[x] 1. Buy milk (priority 2)
+$ python tracker.py
+Usage: python tracker.py add|done|list ...
+```
+
+### Evaluation
+
+| Area | Finding | Evidence | Status |
+|---|---|---|---|
+| Structure | One module + one test module, clear function split (persistence / domain / presentation / CLI); `main` mixes UI and logic | `tracker.py`, docs/03-pattern-decision.md | OK (small) |
+| README accuracy | All documented commands work as written. Gaps: no Python version, no venv advice, sort keys `title`/`id` and the location of `tasks.json` (current directory) not documented, no link to docs/ | run above | Partly |
+| Reproducible setup | `pip install -r requirements.txt` worked twice (2 venvs) and gave identical versions today, but nothing pins them | `requirements.txt` = `pytest` | Weak |
+| Pinned dependencies | No | R7 / D1 | Missing |
+| Tests | 5 unit tests, green; no CLI, persistence or error-path tests | `pytest` output above | Partial |
+| Lint / type checks | ruff, mypy not installed, no config | M1 | Missing |
+| Build | No build step exists (plain script) - nothing to build or verify | `find` for pyproject/setup.py/Makefile: none | N/A |
+| Logging | None (`git grep logging` -> no match); errors are either swallowed (`except:`) or raw tracebacks | R1, R3 | Missing |
+| Security safeguards | No `.gitignore`; `tasks.json` stageable by `git add -A`; no secrets found in repo | S1 (CONFIRMED), S2 (UNSUPPORTED) | Missing |
+| AGENTS.md | Present (Phase 2): purpose, real architecture, setup, safe commands, prohibited actions, review gates, test expectations; `CLAUDE.md` imports it | `AGENTS.md`, `CLAUDE.md` | Present |
+| Enforcement of AGENTS.md | None: no hooks (only `*.sample`), no `.claude/settings.json`, no CI; branch protection not checked | A1 / R9 | Missing |
+| Open CONFIRMED high risks | R1 (score 6), R2 (score 6) | docs/05-risk-register.md | Open |
+
+### Level BEFORE mitigations: **2 - Documented**
+Justification: README commands are accurate and were executed successfully; AGENTS.md/CLAUDE.md give an agent the purpose,
+real architecture, safe commands, forbidden actions and review gates; tests are green from the documented command.
+It is **not level 3** because evidence for the level-3 criteria is missing:
+- no pinned dependencies (unpinned `pytest`);
+- no lint/type checks and no CI (nothing runs automatically);
+- no `.gitignore`, no hooks/permission rules/branch protection - AGENTS.md is advisory only;
+- two open CONFIRMED score-6 risks (R1 data loss, R2 data exposure).
+
+Note: at the untouched `baseline` tag (no AGENTS.md, no acceptance criteria) the repository would only have been
+**level 1 - Baseline**; the jump to 2 comes entirely from documentation added in Phase 2.
+
+## Part B - After mitigations
+(appended in Phase 9)
