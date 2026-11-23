@@ -65,5 +65,36 @@ It is **not level 3** because evidence for the level-3 criteria is missing:
 Note: at the untouched `baseline` tag (no AGENTS.md, no acceptance criteria) the repository would only have been
 **level 1 - Baseline**; the jump to 2 comes entirely from documentation added in Phase 2.
 
-## Part B - After mitigations
-(appended in Phase 9)
+## Part B - After mitigations (re-evaluated at commit `0b27bb6`)
+
+Commands re-run:
+```
+$ python -m pytest -q
+11 passed in 0.15s
+$ python -m ruff --version   -> No module named ruff
+$ python -m mypy --version   -> No module named mypy
+$ cat requirements.txt
+pytest
+$ git ls-files | grep -E "gitignore|tasks.json"
+.gitignore
+```
+Temp-dir CLI run: `add "Buy milk" 2` -> `Added task 1: Buy milk`; `list priority` -> `[ ] 1. Buy milk (priority 2)`;
+`done 1` -> `Task 1 completed`; `add` (no title) -> still `IndexError: list index out of range` (R3 open).
+
+| Area | Before | After | Evidence |
+|---|---|---|---|
+| Tests | 5 unit tests | 11 tests incl. persistence error path and git-ignore checks | `11 passed` |
+| Security safeguards | no `.gitignore` | `.gitignore` covers `tasks.json`, `.env*`, caches, venvs | R2 mitigation, docs/07 |
+| Data integrity | silent overwrite of corrupted file | fails loudly, file preserved | R1 mitigation, docs/07 |
+| Pinned dependencies | missing | **still missing** | `requirements.txt` = `pytest` |
+| Lint / type checks / CI | missing | **still missing** (not installed, not executed) | above |
+| Logging / friendly errors | missing | **still missing** (raw tracebacks for R1 corrupt file and R3) | CLI run above |
+| AGENTS.md enforcement | none | **still none** (no hooks, no permission rules, branch protection not checked) | R9 |
+| README | accurate, gaps | updated in the final phase (docs links, venv, sort keys) | README.md |
+| Human review of agent changes | - | **PENDING** | all docs |
+
+### Level AFTER mitigations: **2 - Documented** (unchanged)
+The two score-6 CONFIRMED risks are mitigated and safeguards improved, but the level-3 evidence is still missing:
+no pinned dependencies, no automated lint/type/CI gate, no technical enforcement of AGENTS.md, and the human review gate
+has not been passed. Raising the level would require at least: pinned `requirements.txt`, ruff + mypy configured and passing in
+CI, branch protection or permission deny-rules, and a recorded human review.
