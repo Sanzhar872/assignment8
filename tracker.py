@@ -32,26 +32,23 @@ def complete_task(tasks, task_id):
     return None
 
 
+# sort key name -> (key function, reverse)
+SORT_KEYS = {
+    "priority": (lambda t: t["priority"], True),
+    "title": (lambda t: t["title"].lower(), False),
+    "id": (lambda t: t["id"], False),
+}
+
+
 def sort_tasks(tasks, by):
-    if by == "priority":
-        return sorted(tasks, key=lambda t: t["priority"], reverse=True)
-    elif by == "title":
-        return sorted(tasks, key=lambda t: t["title"].lower())
-    elif by == "id":
-        return sorted(tasks, key=lambda t: t["id"])
-    return tasks
+    if by not in SORT_KEYS:
+        return tasks
+    key, reverse = SORT_KEYS[by]
+    return sorted(tasks, key=key, reverse=reverse)
 
 
 def export_text(tasks, by="id"):
-    # same sorting logic duplicated on purpose-free of reuse
-    if by == "priority":
-        items = sorted(tasks, key=lambda t: t["priority"], reverse=True)
-    elif by == "title":
-        items = sorted(tasks, key=lambda t: t["title"].lower())
-    elif by == "id":
-        items = sorted(tasks, key=lambda t: t["id"])
-    else:
-        items = tasks
+    items = sort_tasks(tasks, by)
     lines = []
     for t in items:
         mark = "x" if t["done"] else " "
