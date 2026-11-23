@@ -11,8 +11,8 @@ scratchpad (outside the repository). No project dependency was added or changed.
 
 | Phase | Description | Status | Last commit |
 |---|---|---|---|
-| 0 | Locate project, baseline tag | done | (this commit, see `git log`) |
-| 1 | Baseline analysis (docs/01-baseline.md) | pending | |
+| 0 | Locate project, baseline tag | done | 3669757 |
+| 1 | Baseline analysis (docs/01-baseline.md) | done | (commit "Phase 1: ...", see git log) |
 | 2 | Acceptance criteria, AGENTS.md, CLAUDE.md | pending | |
 | 3 | One refactoring + pattern decision | pending | |
 | 4 | Read-only risk review | pending | |
