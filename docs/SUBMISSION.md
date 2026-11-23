@@ -23,7 +23,7 @@ commands or approved any document.
 | 11 | Two mitigation records | Done - R1 (`079a1fa`), R2 (`8280c88`) | `docs/07-mitigation-and-verification.md` |
 | 12 | Background-agent safeguards | Done (hypothetical; no agent run) | `docs/08-background-agent-safeguards.md` |
 | 13 | Release decision | Done - **CONDITIONAL** | `docs/09-release-decision.md` |
-| 14 | 200-300 word reflection | **NOT DONE - student writes it** (placeholder only) | `docs/10-ai-reflection.md` |
+| 14 | 200-300 word reflection | Done (291 words) - written by the student, wording corrected by the agent on request; **student must confirm the claims** | `docs/10-ai-reflection.md` |
 | 15 | AI evidence appendix | Done | `docs/ai-evidence.md` |
 | 16 | No credentials or fabricated results | Checked by the agent (below); **student confirmation PENDING** | - |
 | 17 | Human review of all AI changes | **PENDING** | - |
@@ -74,5 +74,5 @@ committed (`git log --all --oneline -- tasks.json` is empty). Note: pasted pytes
 1. Review every diff (`git diff baseline..HEAD`) and every document; correct anything you disagree with (especially the
    likelihood/impact scores and the release decision).
 2. Re-run `python -m pytest -q` yourself.
-3. Write the 200-300 word reflection in `docs/10-ai-reflection.md`.
+3. Check the corrected reflection in `docs/10-ai-reflection.md`: keep "I personally reviewed the diffs, re-ran the tests" only if you really did, and confirm the "(medium)" effort setting.
 4. Replace "PENDING" with your review note (name, date) where appropriate.
