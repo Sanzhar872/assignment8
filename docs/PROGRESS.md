@@ -20,6 +20,6 @@ scratchpad (outside the repository). No project dependency was added or changed.
 | 6 | Agent readiness (before) | done | f862efc |
 | 7 | Two mitigations | done | 079a1fa (R1), 8280c88 (R2), fb12485 |
 | 8 | Background-agent safeguards | done | 0b27bb6 |
-| 9 | Readiness after + release decision | done | (commit "Phase 9: ...", see git log) |
-| 10 | Reflection placeholder | pending | |
+| 9 | Readiness after + release decision | done | 5405632 |
+| 10 | Reflection placeholder | done | (commit "Phase 10: ...", see git log) |
 | Final | README, SUBMISSION, push | pending | |
