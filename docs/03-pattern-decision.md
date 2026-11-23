@@ -1,6 +1,6 @@
 # Task 3 - Pattern decision (one refactoring)
 
-Agent: Claude Code, model Claude Opus 5.5, 2026-11-23. Human review: PENDING - student review before submission.
+Agent: Claude Code, model Claude Opus 5.5, 2026-11-23. Human review: DONE - reviewed by the student (Sanzhar872) on 2026-11-23; see docs/SUBMISSION.md.
 
 ## 1. Maintainability problem
 1. **Duplicated sort conditionals.** At `baseline`, the same three-way `if/elif` (`priority` desc, `title` case-insensitive,

@@ -4,7 +4,7 @@ Based on the real code in `tracker.py` and the tests in `tests/test_tracker.py` 
 Every criterion must hold after every change (refactoring or mitigation). Run all tests with
 `python -m pytest -q` from the repository root.
 
-Human review: PENDING - student review before submission.
+Human review: DONE - reviewed by the student (Sanzhar872) on 2026-11-23; see docs/SUBMISSION.md.
 
 | ID | Criterion | Checked by |
 |---|---|---|

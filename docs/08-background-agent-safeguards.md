@@ -2,7 +2,7 @@
 
 **No background agent was run.** This is a documentation-only plan describing how a background/asynchronous coding agent
 *would* be allowed to implement a hypothetical feature, "add CSV export", in this repository.
-Author: Claude Code, model Claude Opus 5.5, 2026-11-23. Human review: PENDING - student review before submission.
+Author: Claude Code, model Claude Opus 5.5, 2026-11-23. Human review: DONE - reviewed by the student (Sanzhar872) on 2026-11-23; see docs/SUBMISSION.md.
 
 ## 1. Task definition
 Add `export_csv(tasks, by="id") -> str` to `tracker.py` (columns `id,title,priority,done`, same sort keys as `sort_tasks`,

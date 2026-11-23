@@ -103,7 +103,7 @@ Task 1 completed
   raw traceback when the file is corrupt).
 - **Residual risk:** user sees a Python traceback instead of a friendly message; a crash during `save_tasks` can still corrupt
   the file (C7); unreadable file now stops every command until a human repairs it (intended - fail loudly).
-- **Human review: PENDING** - student review before submission.
+- **Human review: DONE** - reviewed by the student (Sanzhar872) on 2026-11-23; see docs/SUBMISSION.md.
 
 ---
 
@@ -192,7 +192,7 @@ Acceptance criteria: AC1-AC3 tests PASSED in the 11-test run; AC4 shown above; `
 - **Updated score:** L 2 -> 1, I 3 (unchanged: if it still happens, it is still a privacy leak), score **6 -> 3**.
 - **Residual risk:** `git add -f tasks.json` bypasses it; a `tasks.json` stored outside the repo root under another name is not
   covered; `.gitignore` does not enforce anything on the remote (no pre-commit hook / CI secret scan).
-- **Human review: PENDING** - student review before submission.
+- **Human review: DONE** - reviewed by the student (Sanzhar872) on 2026-11-23; see docs/SUBMISSION.md.
 
 ---
 

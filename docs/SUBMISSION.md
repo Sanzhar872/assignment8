@@ -1,8 +1,7 @@
 # Submission checklist - Assignment #05
 
 Prepared by Claude Code (model Claude Opus 5.5) on 2026-11-23.
-**Human review: PENDING - student review before submission.** The student has not yet reviewed the diffs, re-run the
-commands or approved any document.
+**Human review: DONE** - see "Student review" below.
 
 - Repository: https://github.com/Sanzhar872/assignment8
 - Baseline tag: `baseline` -> `efbc9e4104f56ee6ec7b13161b98fbdab8ed35c2`
@@ -25,8 +24,8 @@ commands or approved any document.
 | 13 | Release decision | Done - **CONDITIONAL** | `docs/09-release-decision.md` |
 | 14 | 200-300 word reflection | Done (291 words) - written by the student, wording corrected by the agent on request; **student must confirm the claims** | `docs/10-ai-reflection.md` |
 | 15 | AI evidence appendix | Done | `docs/ai-evidence.md` |
-| 16 | No credentials or fabricated results | Checked by the agent (below); **student confirmation PENDING** | - |
-| 17 | Human review of all AI changes | **PENDING** | - |
+| 16 | No credentials or fabricated results | Checked by the agent (below); covered by the student review of 2026-11-23 | - |
+| 17 | Human review of all AI changes | Done - 2026-11-23, see "Student review" | this file |
 
 ## Final test output (real)
 ```
@@ -70,9 +69,26 @@ The second command matched only documentation text (every hit was the substring 
 committed (`git log --all --oneline -- tasks.json` is empty). Note: pasted pytest outputs contain the local path
 `C:\Users\SANJAR\Desktop\uni\se\as8\task-tracker`; remove it if that matters to you.
 
-## What the student must still do
-1. Review every diff (`git diff baseline..HEAD`) and every document; correct anything you disagree with (especially the
-   likelihood/impact scores and the release decision).
-2. Re-run `python -m pytest -q` yourself.
-3. Check the corrected reflection in `docs/10-ai-reflection.md`: keep "I personally reviewed the diffs, re-ran the tests" only if you really did, and confirm the "(medium)" effort setting.
-4. Replace "PENDING" with your review note (name, date) where appropriate.
+## Student review
+- Reviewer: Sanzhar872 (student), 2026-11-23.
+- Diffs `baseline..HEAD` and documents: reviewed (stated by the student).
+- Tests re-run by the student in their own `.venv` (Windows PowerShell), `python -m pytest -v`:
+```
+tests/test_tracker.py::test_add_task_appears_in_list PASSED
+tests/test_tracker.py::test_complete_task_sets_done PASSED
+tests/test_tracker.py::test_complete_unknown_task_returns_none PASSED
+tests/test_tracker.py::test_sort_by_priority_descending PASSED
+tests/test_tracker.py::test_export_text_characterization PASSED
+tests/test_tracker.py::test_corrupted_tasks_file_is_not_overwritten PASSED
+tests/test_tracker.py::test_missing_tasks_file_still_means_empty_list PASSED
+tests/test_tracker.py::test_user_data_and_local_files_are_git_ignored[tasks.json] PASSED
+tests/test_tracker.py::test_user_data_and_local_files_are_git_ignored[.env] PASSED
+tests/test_tracker.py::test_user_data_and_local_files_are_git_ignored[__pycache__/tracker.cpython-313.pyc] PASSED
+tests/test_tracker.py::test_user_data_and_local_files_are_git_ignored[.venv/pyvenv.cfg] PASSED
+11 passed in 0.19s
+```
+  (transcribed from the student's terminal screenshot; percentage column omitted)
+
+## Still open
+- Release conditions G2-G4 in docs/09-release-decision.md (lint/type checks, pinned dependencies, R3 fix).
+- Confirm the "(medium)" effort setting mentioned in the reflection.

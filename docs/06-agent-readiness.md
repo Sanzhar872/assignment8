@@ -1,6 +1,6 @@
 # Task 6 - Agent readiness audit
 
-Agent: Claude Code, model Claude Opus 5.5, 2026-11-23. Human review: PENDING - student review before submission.
+Agent: Claude Code, model Claude Opus 5.5, 2026-11-23. Human review: DONE - reviewed by the student (Sanzhar872) on 2026-11-23; see docs/SUBMISSION.md.
 
 Levels used:
 - **1 Baseline** - code runs and has some tests, but nothing tells an agent how to work safely; setup/hygiene gaps.
@@ -91,7 +91,7 @@ Temp-dir CLI run: `add "Buy milk" 2` -> `Added task 1: Buy milk`; `list priority
 | Logging / friendly errors | missing | **still missing** (raw tracebacks for R1 corrupt file and R3) | CLI run above |
 | AGENTS.md enforcement | none | **still none** (no hooks, no permission rules, branch protection not checked) | R9 |
 | README | accurate, gaps | updated in the final phase (docs links, venv, sort keys) | README.md |
-| Human review of agent changes | - | **PENDING** | all docs |
+| Human review of agent changes | - | **Done** by the student on 2026-11-23 (after this audit was written) | docs/SUBMISSION.md |
 
 ### Level AFTER mitigations: **2 - Documented** (unchanged)
 The two score-6 CONFIRMED risks are mitigated and safeguards improved, but the level-3 evidence is still missing:

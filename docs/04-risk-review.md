@@ -1,6 +1,6 @@
 # Task 4 - Read-only risk review
 
-Agent: Claude Code, model Claude Opus 5.5, 2026-11-23. Human review: PENDING - student review before submission.
+Agent: Claude Code, model Claude Opus 5.5, 2026-11-23. Human review: DONE - reviewed by the student (Sanzhar872) on 2026-11-23; see docs/SUBMISSION.md.
 
 Scope: code at commit `7a2d867` (after the Phase 3 refactoring; `load_tasks`, `save_tasks`, `add_task`, `main`
 are byte-identical to `baseline`). **No tracked source or test file was modified in this phase** (see the

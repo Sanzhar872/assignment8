@@ -1,7 +1,6 @@
 # Task 9 - Release decision
 
-Agent: Claude Code, model Claude Opus 5.5, 2026-11-23. Decision prepared by the agent; it is **not valid until the student
-reviews it**. Human review: PENDING - student review before submission.
+Agent: Claude Code, model Claude Opus 5.5, 2026-11-23. Decision prepared by the agent and reviewed by the student. Human review: DONE - reviewed by the student (Sanzhar872) on 2026-11-23; see docs/SUBMISSION.md.
 
 ## Decision: **CONDITIONAL**
 
@@ -28,7 +27,7 @@ Not executed: ruff, mypy (not installed), no CI, no build step exists.
 
 ## 2. Why not GO / why not NO-GO
 - **Not GO:** quality gates are incomplete - lint and type checks were never executed, dependencies are unpinned, six CONFIRMED
-  risks remain open (though all low/medium), readiness is only level 2, and **no human has reviewed the agent-made changes**.
+  risks remain open (though all low/medium), and readiness is only level 2. (At the time of writing no human had reviewed the changes; that review has since been done - condition G1.)
 - **Not NO-GO:** there is no open CONFIRMED high-impact risk (the data-loss and data-exposure risks are mitigated and verified by
   tests); all 11 tests pass; documented commands work. Remaining issues are crashes with tracebacks on invalid input (no data
   changed, verified: the crash happens before `save_tasks`) and missing tooling.
@@ -36,10 +35,12 @@ Not executed: ruff, mypy (not installed), no CI, no build step exists.
 ## 3. Conditions to reach GO
 | # | Condition | Owner | Control / verification |
 |---|---|---|---|
-| G1 | Student reviews the full diff `git diff baseline..HEAD` and every doc, and records the review (name, date) in docs/SUBMISSION.md | Student | Review recorded; "PENDING" replaced |
+| G1 | Student reviews the full diff `git diff baseline..HEAD` and every doc, and records the review (name, date) in docs/SUBMISSION.md | Student | **Met 2026-11-23** - review recorded in docs/SUBMISSION.md |
 | G2 | Lint and type checks executed: add pinned `ruff` and `mypy` (needs explicit approval for new dev dependencies), `ruff check .` and `mypy tracker.py` exit 0 | Student | Real command output added to docs |
 | G3 | Pin `requirements.txt` (e.g. `pytest==9.2.0`) | Student | Fresh venv install + `pytest -q` green |
 | G4 | Fix R3: validate argv length and `int()` in `main`, print usage, non-zero exit; tests with `monkeypatch`/`capsys` | Student | New tests fail first, then pass |
+
+G1 is met; G2-G4 are still open, so the decision remains **CONDITIONAL**.
 
 ## 4. Remaining limitations accepted for a CONDITIONAL release
 | Limitation | Risk ID | Owner | Control until fixed |

@@ -1,6 +1,6 @@
 # Task 5 - Risk register
 
-Agent: Claude Code, model Claude Opus 5.5, 2026-11-23. Human review: PENDING - student review before submission.
+Agent: Claude Code, model Claude Opus 5.5, 2026-11-23. Human review: DONE - reviewed by the student (Sanzhar872) on 2026-11-23; see docs/SUBMISSION.md.
 Evidence IDs (C1, S1, ...) refer to docs/04-risk-review.md. Scale: Likelihood 1 = rare, 2 = possible, 3 = likely;
 Impact 1 = annoyance, 2 = wrong result / rework, 3 = data loss or privacy exposure. Score = L x I (max 9).
 Owner of every row: the student (Sanzhar872).

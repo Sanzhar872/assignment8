@@ -2,7 +2,7 @@
 
 Analysed state: tag `baseline` = commit `efbc9e4` ("baseline: initial task tracker").
 Source code was **not modified** in this phase. Agent: Claude Code, model Claude Opus 5.5, 2026-11-23.
-Human review: PENDING - student review before submission.
+Human review: DONE - reviewed by the student (Sanzhar872) on 2026-11-23; see docs/SUBMISSION.md.
 
 ## 1. Repository map
 
