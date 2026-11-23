@@ -9,7 +9,7 @@ def load_tasks():
     try:
         with open(DATA_FILE) as f:
             return json.load(f)
-    except:
+    except FileNotFoundError:
         return []
 
 

@@ -71,3 +71,25 @@ def test_export_text_characterization():
         "[ ] 1. banana (priority 1)"
     )
     assert tracker.export_text([]) == ""
+
+
+CORRUPTED = '[{"id": 1, "title": "Task A", "priority": 1, "done": false}, {"id": 2, "title": "Task B"'
+
+
+def test_corrupted_tasks_file_is_not_overwritten(tmp_path, monkeypatch):
+    """R1: a corrupted tasks.json must never be silently replaced."""
+    data_file = tmp_path / "tasks.json"
+    data_file.write_text(CORRUPTED)
+    monkeypatch.setattr(tracker, "DATA_FILE", str(data_file))
+    monkeypatch.setattr(sys, "argv", ["tracker.py", "add", "Task C", "1"])
+    try:
+        tracker.main()
+    except ValueError:  # json.JSONDecodeError is a ValueError
+        pass  # failing loudly is acceptable; losing data is not
+    assert data_file.read_text() == CORRUPTED
+
+
+def test_missing_tasks_file_still_means_empty_list(tmp_path, monkeypatch):
+    """R1 guard: first run without tasks.json keeps working."""
+    monkeypatch.setattr(tracker, "DATA_FILE", str(tmp_path / "tasks.json"))
+    assert tracker.load_tasks() == []
